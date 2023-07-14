@@ -13,8 +13,6 @@
                             <input name="first_name" type="text" class="form-control" value="{{old('first_name', $client->first_name)}}">
                             <label class="form-label">Last Name</label>
                             <input name="last_name" type="text" class="form-control" value="{{old('last_name', $client->last_name)}}">
-                            <label class="form-label">Personal ID</label>
-                            <input name="personal_id" type="text" class="form-control" value="{{old('personal_id', $client->personal_id)}}">
                         </div>
                         <button type="submit" class="btn btn-primary">Save</button>
                         <a href="{{route('clients-index')}}" class="btn btn-secondary">Cancel</a>

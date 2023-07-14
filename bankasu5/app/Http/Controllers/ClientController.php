@@ -99,7 +99,6 @@ class ClientController extends Controller
             [
                 'first_name' => 'required|max:50|min:3|alpha',
                 'last_name' => 'required|max:50|min:3|alpha',
-                'personal_id' => 'required|max_digits:11',
             ],
             [
                 'first_name.required' => 'Please enter client first name!',
@@ -110,8 +109,6 @@ class ClientController extends Controller
                 'last_name.max' => 'Client last name is too long!',
                 'last_name.min' => 'Client last name is too short!',
                 'last_name.alpha' => 'Client last name must contain only letters!',
-                'personal_id.required' => 'Please enter client personal ID!',
-                'personal_id.max_digits' => 'Personal ID must consist of 11 numbers!',
             ]);
 
         if ($validator->fails()) {
@@ -121,12 +118,11 @@ class ClientController extends Controller
         
         $client->first_name = $request->first_name;
         $client->last_name = $request->last_name;
-        $client->personal_id = $request->personal_id;
 
         $client->save();
         return redirect()
         ->route('clients-index')
-        ->with('success', 'Client details have been updated!');
+        ->with('success', 'Client ' . $client->first_name . ' ' . $client->last_name . ' details have been updated!');
 
     }
 
@@ -149,6 +145,6 @@ class ClientController extends Controller
         $client->delete();
         return redirect()
         ->route('clients-index')
-        ->with('success', 'Author has been deleted!');
+        ->with('success', 'Client ' . $client->first_name . ' ' . $client->last_name . ' has been deleted!');
     }
 }
