@@ -40,8 +40,8 @@
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Accounts</a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="">Accounts list</a>
-                                <a class="dropdown-item" href="">Add new account</a>
+                                <a class="dropdown-item" href="{{ route('accounts-index') }}">Accounts list</a>
+                                <a class="dropdown-item" href="{{ route('accounts-create') }}">Add new account</a>
                             </div>
                         </li>
                         

@@ -25,7 +25,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        return view('clients.create');
+        return view('clients.create', []);
     }
 
     /**
@@ -39,19 +39,22 @@ class ClientController extends Controller
             [
                 'first_name' => 'required|max:50|min:3|alpha',
                 'last_name' => 'required|max:50|min:3|alpha',
-                'personal_id' => 'required|max_digits:11',
+                'personal_id' => ['required','integer','regex:/^(3[0-9]{2}|4[0-9]{2}|6[0-9]{2}|5[0-9]{2})(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])\d{4}$/']
             ],
             [
                 'first_name.required' => 'Please enter client first name!',
                 'first_name.max' => 'Client first name is too long!',
                 'first_name.min' => 'Client first name is too short!',
                 'first_name.alpha' => 'Client first name must contain only letters!',
+
                 'last_name.required' => 'Please enter client last name!',
                 'last_name.max' => 'Client last name is too long!',
                 'last_name.min' => 'Client last name is too short!',
                 'last_name.alpha' => 'Client last name must contain only letters!',
+
                 'personal_id.required' => 'Please enter client personal ID!',
-                'personal_id.max_digits' => 'Personal ID must consist of 11 numbers!',
+                'personal_id.integer' => 'Personal ID must consist of 11 digits!',
+                'personal_id.regex' => 'Personal ID is not valid!',
             ]);
 
         if ($validator->fails()) {
@@ -128,9 +131,9 @@ class ClientController extends Controller
 
     public function delete(Client $client)
     {
-        // if ($client->colors()->count()) {
-        //     return redirect()->back()->with('info', 'Can not delete author, because it has colors!');
-        // }
+        if ($client->accounts()->count()) {
+            return redirect()->back()->with('info', 'Can not delete client, because it has accounts!');
+        }
         
         return view('clients.delete', [
             'client' => $client

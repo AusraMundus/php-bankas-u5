@@ -14,13 +14,17 @@
                                 <div class="d-flex">
                                     <div class="ms-2">
                                         <div class="fw-bold fs-3">{{$client->first_name}} {{$client->last_name}}</div>
-                                        <div>Personal ID</div>
+                                        <div>Personal ID:</div>
                                         <div class="fw-bold">{{$client->personal_id}}</div>
+                                        <div>Total accounts:</div>
+                                        <div class="fw-bold">{{$client->accounts()->count()}}</div>
+                                        <div>Total balance:</div>
+                                        <div class="fw-bold">{{$client->accounts()->sum('balance')}} €</div>
                                     </div>
                                 </div>
                                 <div>
-                                    <a class="btn btn-primary m-1" href="{{route('clients-edit', $client)}}">Edit</a>                              </a>
-                                    <a class="btn btn-danger m-1" href="{{route('clients-delete', $client)}}">Delete</a>
+                                    <a class="btn btn-primary m-1" href="{{route('clients-edit', $client)}}">Edit client data</a>
+                                    <a class="btn btn-danger m-1" href="{{route('clients-delete', $client)}}">Delete client</a>
                                 </div>
                             </div>
                         </li>
