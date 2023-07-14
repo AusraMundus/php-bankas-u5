@@ -36,22 +36,21 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         
+                        <!-- Accounts Link -->
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Accounts</a>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="">Accounts list</a>
+                                <a class="dropdown-item" href="">Add new account</a>
+                            </div>
+                        </li>
+                        
                         <!-- Clients Link -->
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                Clients
-                            </a>
-
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Clients</a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-
-                                <a class="dropdown-item" href="{{ route('clients-index') }}">
-                                    Clients list
-                                </a>
-                                <a class="dropdown-item" href="{{ route('clients-create') }}">
-                                    Add new client
-                                </a>
-
+                                <a class="dropdown-item" href="{{ route('clients-index') }}">Clients list</a>
+                                <a class="dropdown-item" href="{{ route('clients-create') }}">Add new client</a>
                             </div>
                         </li>
                         

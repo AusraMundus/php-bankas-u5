@@ -5,42 +5,31 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
+                <h5 class="card-header">Clients List</h5>
                 <div class="card-body">
-                    <h5 class="card-title">Clients List</h5>
                     <ul class="list-group list-group-flush">
-                        
                         @forelse($clients as $client)
                         <li class="list-group-item">
-                            <div class="justify-content-between">
-                                <div>
-                                    <div class="d-flex">
-                                        <div class="ms-2">
-                                            <div>{{$client->first_name}}</div>
-                                            <div>{{$client->last_name}}</div>
-                                            <div>{{$client->personal_id}}</div>
-                                        </div>
+                            <div class="justify-content-between" style="display: flex; flex-direction: row; align-items: center;">
+                                <div class="d-flex">
+                                    <div class="ms-2">
+                                        <div class="fw-bold fs-3">{{$client->first_name}} {{$client->last_name}}</div>
+                                        <div>Personal ID</div>
+                                        <div class="fw-bold">{{$client->personal_id}}</div>
                                     </div>
                                 </div>
-                            </div>
-                            <div>
-                                <a class="btn btn-primary" href="{{route('clients-edit', $client)}}">
-                                    Edit
-                                </a>
-                                <a class="btn btn-danger" href="{{route('clients-delete', $client)}}">
-                                    Delete    
-                                </a>
+                                <div>
+                                    <a class="btn btn-primary m-1" href="{{route('clients-edit', $client)}}">Edit</a>                              </a>
+                                    <a class="btn btn-danger m-1" href="{{route('clients-delete', $client)}}">Delete</a>
+                                </div>
                             </div>
                         </li>
-
                         @empty
                         <li class="list-group-item">
                             <p class="text-center">No clients</p>
                         </li>
-
-                        @endforelse
-
+                    @endforelse
                     </ul>
-  
                 </div>
             </div>
         </div>
