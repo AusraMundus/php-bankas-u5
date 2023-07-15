@@ -41,14 +41,14 @@ class AccountController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'iban' => 'required|max:20|min:20',
+                'iban' => 'required|unique:accounts|size:20',
                 'client_id' => 'required|integer',
                 'balance' => 'required|integer'
             ],
             [
                 'iban.required' => 'Please enter account No!',
-                'iban.max' => 'Account No is too long!',
-                'iban.min' => 'Account No is too short!',
+                'iban.unique' => 'Account with this account number has already been added!',
+                'iban.size' => 'Account No must consist of 20 characters!',
 
                 'client_id.required' => 'Please select the client!',
                 'client_id.integer' => 'Please select the client!',
@@ -62,8 +62,9 @@ class AccountController extends Controller
 
         $account = new Account;
         $account->iban = $request->iban;
+        // $account->iban = $request->Account::generateLithuanianIBANn();
         $account->client_id = $request->client_id;
-        $account->balance = $request->balance;
+        $account->balance = 0;
 
         $account->save();
         return redirect()
@@ -124,7 +125,7 @@ class AccountController extends Controller
             $account->save();
             return redirect()
                 ->route('accounts-index')
-                ->with('success', $amount . ' € has been added to the account ' . $account->iban . '!');
+                ->with('success', $amount . ' € has been added to the ' . $account->client->first_name . ' ' . $account->client->last_name . ' account ' . $account->iban . '!');
         }
 
         // Withdraw money
@@ -135,7 +136,7 @@ class AccountController extends Controller
             $account->save();
             return redirect()
                 ->route('accounts-index')
-                ->with('success', $amount . ' € has been withdrawn from the account ' . $account->iban . '!');
+                ->with('success', $amount . ' € has been withdrawn from the ' . $account->client->first_name . ' ' . $account->client->last_name . ' account ' . $account->iban . '!');
         }
     }
 

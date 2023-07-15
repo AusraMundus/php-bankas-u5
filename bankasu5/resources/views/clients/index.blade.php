@@ -14,8 +14,8 @@
                                 <div class="d-flex">
                                     <div class="ms-2">
                                         <div class="fw-bold fs-3">{{$client->first_name}} {{$client->last_name}}</div>
-                                        <div>Personal ID:</div>
-                                        <div class="fw-bold">{{$client->personal_id}}</div>
+                                        {{-- <div>Personal ID:</div>
+                                        <div class="fw-bold">{{$client->personal_id}}</div> --}}
                                         <div>Total balance:</div>
                                         <div class="fw-bold">{{$client->accounts()->sum('balance')}} €</div>
                                         <div>Total accounts:</div>

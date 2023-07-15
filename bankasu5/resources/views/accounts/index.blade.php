@@ -15,7 +15,7 @@
                                     <div class="ms-2">
                                         <div class="fw-bold fs-3">{{$account->iban}}</div>
                                         <div>Client</div>
-                                        <div class="fw-bold">{{$account->client_id}}</div>
+                                        <div class="fw-bold">{{$account->client->first_name}} {{$account->client->last_name}}</div>
                                         <div>Balance</div>
                                         <div class="fw-bold">{{$account->balance}} €</div>
                                     </div>

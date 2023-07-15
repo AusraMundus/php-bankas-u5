@@ -11,10 +11,10 @@
                         <form method="post" action="{{route('accounts-destroy', $account)}}">
                             <div class="justify-content-between">
                                 <div class="d-flex mb-3">
-                                    <div class="ms-2">
+                                    <div>
                                         <div class="fw-bold fs-3">{{$account->iban}}</div>
                                         <div>Client</div>
-                                        <div class="fw-bold">{{$account->client_id}}</div>
+                                        <div class="fw-bold">{{$account->client->first_name}} {{$account->client->last_name}}</div>
                                         <div>Balance, €</div>
                                         <div class="fw-bold">{{$account->balance}}</div>
                                     </div>

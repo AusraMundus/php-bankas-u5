@@ -7,7 +7,7 @@
             <div class="card">
             <h5 class="card-header">Add new account</h5>
                 <div class="card-body">
-                    <h6 class="card-subtitle mb-3 text-muted">From the clients list, select the client to which you want to add an account.</h6>
+                    <h6 class="card-subtitle mb-3 text-muted">From the clients list, select the client to which you want to add an account</h6>
                     <form method="post" action="{{route('accounts-store')}}">
 
                         <div class="mb-3">
@@ -23,6 +23,7 @@
                         <div class="mb-3">
                             <label class="form-label">Account No</label>
                             <input name="iban" type="text" class="form-control" value="{{old('iban')}}">
+                            {{-- <input name="iban" type="text" class="form-control" value="{{$account->iban}}" readonly> --}}
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Balance, €</label>
