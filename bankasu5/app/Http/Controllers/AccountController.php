@@ -51,7 +51,8 @@ class AccountController extends Controller
                 'iban.min' => 'Account No is too short!',
                 'client_id.required' => 'Please select the client!',
                 'client_id.integer' => 'Please select the client!',
-            ]);
+            ]
+        );
 
         if ($validator->fails()) {
             $request->flash();
@@ -65,8 +66,8 @@ class AccountController extends Controller
 
         $account->save();
         return redirect()
-        ->route('accounts-index')
-        ->with('success', 'New account has been added!');
+            ->route('accounts-index')
+            ->with('success', 'New account has been added!');
     }
 
     /**
@@ -83,7 +84,7 @@ class AccountController extends Controller
     public function edit(Account $account)
     {
         $clients = Client::all();
-        
+
         return view('accounts.edit', [
             'account' => $account,
             'clients' => $clients
@@ -95,36 +96,54 @@ class AccountController extends Controller
      */
     public function update(Request $request, Account $account)
     {
+        $amount = $request->amount;
+
         $validator = Validator::make(
             $request->all(),
             [
-                'balance' => 'required|integer'
+                'amount' => 'required|integer'
             ],
             [
-                'balance.required' => 'Please enter the amount!',
-                'balance.integer' => 'The amount has to be integer!',
-            ]);
+                'amount.required' => 'Please enter the amount!',
+                'amount.integer' => 'The amount has to be integer!'
+            ]
+        );
 
         if ($validator->fails()) {
             $request->flash();
             return redirect()->back()->withErrors($validator);
         }
 
-        $account->balance = $request->balance;
+        // Add money
+        if (isset($request->add)) {
 
-        $account->save();
-        return redirect()
-        ->route('accounts-index')
-        ->with('success', 'Account balance has been edited!');
+            $account->balance += $amount;
+
+            $account->save();
+            return redirect()
+                ->route('accounts-index')
+                ->with('success', 'Account ' . $account->iban . ' balance has been edited!');
+        }
+
+        // Withdraw money
+        if (isset($request->withdraw)) {
+
+            $account->balance -= $amount;
+
+            $account->save();
+            return redirect()
+                ->route('accounts-index')
+                ->with('success', 'Account ' . $account->iban . ' balance has been edited!');
+        }
     }
 
     public function delete(Account $account)
     {
-        
+
         if ($account->balance > 0) {
             return redirect()->back()->with('info', 'Cannot delete account, because it has money in it!');
         }
-        
+
         return view('accounts.delete', [
             'account' => $account
         ]);
@@ -137,7 +156,7 @@ class AccountController extends Controller
     {
         $account->delete();
         return redirect()
-        ->route('accounts-index')
-        ->with('success', 'Account ' . $account->iban . ' has been deleted!');
+            ->route('accounts-index')
+            ->with('success', 'Account ' . $account->iban . ' has been deleted!');
     }
 }
