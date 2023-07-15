@@ -34,7 +34,7 @@ class ClientController extends Controller
             // Sort
             $clients = match($sortBy) {
                 'client' => $clients->orderBy('client', $orderBy),
-                'last_name' => $clients->orderBy('last_name', $orderBy),
+                'last_name' => $clients->orderBy('last_name', $orderBy),                
                 default => $clients
             };
 

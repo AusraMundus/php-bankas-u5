@@ -14,13 +14,13 @@
                             <fieldset>
                                 <div class="row">
                                 <h4 class="card-title">Sort</h4>
-                                    <div class="col-4">
+                                    <div class="col-2">
                                         <select class="form-select" name="sort_by">
                                             <option value="" @if(''==$sortBy) selected @endif>No sort</option>
                                             <option value="last_name" @if('last_name'==$sortBy) selected @endif>Last Name</option>
                                         </select>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-2">
                                         <select class="form-select" name="order_by">
                                             <option value="asc" @if('asc'==$orderBy) selected @endif>ASC</option>
                                             <option value="desc" @if('desc'==$orderBy) selected @endif>DESC</option>
