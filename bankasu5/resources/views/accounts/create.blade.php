@@ -7,7 +7,7 @@
             <div class="card">
             <h5 class="card-header">Add new account</h5>
                 <div class="card-body">
-                    <h6 class="card-subtitle mb-3 text-muted">Choose the client from the clients list</h6>
+                    <h6 class="card-subtitle mb-3 text-muted">From the clients list, select the client to which you want to add an account.</h6>
                     <form method="post" action="{{route('accounts-store')}}">
 
                         <div class="mb-3">
@@ -26,7 +26,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Balance, €</label>
-                            <input name="balance" type="text" class="form-control" value="{{old('balance')}}">
+                            <input name="balance" type="text" class="form-control" value=0 readonly>
                         </div>
                         <button type="submit" class="btn btn-primary m-1">Add</button>
                         <a class="btn btn-secondary m-1" href="{{route('accounts-index')}}">Cancel</a>

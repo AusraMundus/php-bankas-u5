@@ -7,7 +7,7 @@
             <div class="card">
                 <h5 class="card-header">Edit client details</h5>
                 <div class="card-body">
-                <h6 class="card-subtitle mb-2 text-muted">Edit first name and/or last name</h6>
+                <h6 class="card-subtitle mb-2 text-muted">Edit first name and/or last name.</h6>
                     <form method="post" action="{{route('clients-update', $client)}}">
                         <div class="mb-3">
                             <label class="form-label">First Name</label>

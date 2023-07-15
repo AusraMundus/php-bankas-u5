@@ -49,6 +49,7 @@ class AccountController extends Controller
                 'iban.required' => 'Please enter account No!',
                 'iban.max' => 'Account No is too long!',
                 'iban.min' => 'Account No is too short!',
+
                 'client_id.required' => 'Please select the client!',
                 'client_id.integer' => 'Please select the client!',
             ]
@@ -67,7 +68,7 @@ class AccountController extends Controller
         $account->save();
         return redirect()
             ->route('accounts-index')
-            ->with('success', 'New account has been added!');
+            ->with('success', 'New account ' . $account->iban . ' has been added!');
     }
 
     /**
@@ -101,11 +102,12 @@ class AccountController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'amount' => 'required|integer'
+                'amount' => 'required|integer|min:0'
             ],
             [
                 'amount.required' => 'Please enter the amount!',
-                'amount.integer' => 'The amount has to be integer!'
+                'amount.integer' => 'The amount has to be integer!',
+                'amount.min' => 'The amount must be a positive integer!'
             ]
         );
 
@@ -122,7 +124,7 @@ class AccountController extends Controller
             $account->save();
             return redirect()
                 ->route('accounts-index')
-                ->with('success', 'Account ' . $account->iban . ' balance has been edited!');
+                ->with('success', $amount . ' € has been added to the account ' . $account->iban . '!');
         }
 
         // Withdraw money
@@ -133,7 +135,7 @@ class AccountController extends Controller
             $account->save();
             return redirect()
                 ->route('accounts-index')
-                ->with('success', 'Account ' . $account->iban . ' balance has been edited!');
+                ->with('success', $amount . ' € has been withdrawn from the account ' . $account->iban . '!');
         }
     }
 
@@ -141,7 +143,7 @@ class AccountController extends Controller
     {
 
         if ($account->balance > 0) {
-            return redirect()->back()->with('info', 'Cannot delete account, because it has money in it!');
+            return redirect()->back()->with('info', 'Cannot delete account ' . $account->iban . ' because it has money in it!');
         }
 
         return view('accounts.delete', [
