@@ -5,14 +5,14 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <h5 class="card-header">Accounts List</h5>
+                <h1 class="card-header">Accounts List</h1>
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
                         @forelse($accounts as $account)
                         <li class="list-group-item">
                             <div class="justify-content-between" style="display: flex; flex-direction: row; align-items: center;">
                                 <div class="d-flex">
-                                    <div class="ms-2">
+                                    <div>
                                         <div class="fw-bold fs-3">{{$account->iban}}</div>
                                         <div>Client</div>
                                         <div class="fw-bold">{{$account->client->first_name}} {{$account->client->last_name}}</div>

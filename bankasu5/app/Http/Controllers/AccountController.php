@@ -62,7 +62,7 @@ class AccountController extends Controller
 
         $account = new Account;
         $account->iban = $request->iban;
-        // $account->iban = $request->Account::generateLithuanianIBANn();
+        // $account->iban = Account::generateLithuanianIBANn();
         $account->client_id = $request->client_id;
         $account->balance = 0;
 
@@ -131,6 +131,12 @@ class AccountController extends Controller
         // Withdraw money
         if (isset($request->withdraw)) {
 
+            if ($account->balance < $amount) {
+                return redirect()
+                ->back()
+                ->with('warning', $amount . ' € exceeds the account balance ' . $account->balance . ' € and cannot be withdrawn!');
+            }
+
             $account->balance -= $amount;
 
             $account->save();
@@ -144,7 +150,7 @@ class AccountController extends Controller
     {
 
         if ($account->balance > 0) {
-            return redirect()->back()->with('info', 'Cannot delete account ' . $account->iban . ' because it has money in it!');
+            return redirect()->back()->with('warning', 'Cannot delete account ' . $account->iban . ' because it has money in it!');
         }
 
         return view('accounts.delete', [

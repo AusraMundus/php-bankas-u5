@@ -5,9 +5,9 @@
     <div class="row justify-content-center">
         <div class="col-md-4">
             <div class="card">
-            <h5 class="card-header">Confirm client delete</h5>
+            <h2 class="card-header">Confirm client delete</h2>
                 <div class="card-body">
-                    <h6 class="card-subtitle mb-2 text-muted">Are you sure you want to delete this client?</h6>
+                    <h5 class="card-subtitle mb-2 text-muted">Are you sure you want to delete this client?</h5>
                         <form method="post" action="{{route('clients-destroy', $client)}}">
                             <div class="justify-content-between">
                                 <div class="d-flex mb-3">

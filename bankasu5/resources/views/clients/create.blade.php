@@ -5,9 +5,9 @@
     <div class="row justify-content-center">
         <div class="col-md-4">
             <div class="card">
-            <h5 class="card-header">Add new client</h5>
+            <h2 class="card-header">Add new client</h2>
                 <div class="card-body">
-                    <h6 class="card-subtitle mb-3 text-muted">Enter first name, last name and personal ID.</h6>
+                    <h5 class="card-subtitle mb-3 text-muted">Enter first name, last name and personal ID.</h5>
                     <form method="post" action="{{route('clients-store')}}">
                         <div class="mb-3">
                             <label class="form-label">First Name</label>
