@@ -28,8 +28,8 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-4 mt-4">
-                                        <button type="submit" class="btn btn-outline-primary m-1">Show</button>
+                                    <div class="col-4 mt-1">
+                                        <button type="submit" class="btn btn-outline-primary">Show</button>
                                         <a class="btn btn-outline-secondary m-1" href="{{route('clients-index')}}">Clear</a>
                                     </div>
                                 </div>
@@ -44,13 +44,22 @@
                             <div class="justify-content-between" style="display: flex; flex-direction: row; align-items: center;">
                                 <div class="d-flex">
                                     <div>
-                                        <div class="fw-bold fs-3">{{$client->first_name}} {{$client->last_name}}</div>
-                                        {{-- <div>Personal ID:</div>
-                                        <div class="fw-bold">{{$client->personal_id}}</div> --}}
-                                        <div>Total balance:</div>
-                                        <div class="fw-bold">{{$client->accounts()->sum('balance')}} €</div>
-                                        <div>Total accounts:</div>
-                                        <div class="fw-bold">{{$client->accounts()->count()}}</div>
+                                        <div class="fw-bold fs-3 mb-3">{{$client->first_name}} {{$client->last_name}}</div>
+                                        @if($client->accounts()->count() > 0)
+                                            <div>Total balance:</div>
+                                            <div class="fw-bold mb-3">{{$client->accounts()->sum('balance')}} €</div>
+                                        @endif
+                                        <div>List of accounts and balance:</div>
+                                        @if($client->accounts()->count() > 0)
+                                            <ul class="list-group list-group-flush">
+                                                @foreach($client->accounts as $account)
+                                                    <li class="list-group-item fw-bold">{{$account->iban}} - {{$account->balance}} €</li>
+                                                @endforeach
+                                            </ul>
+                                        @else
+                                            <p class="fw-bold mb-3">No accounts</p>
+                                            <button class="btn btn-outline-success mb-3" onclick="window.location.href='{{route('accounts-create')}}'">Add Account</button>
+                                        @endif
                                     </div>
                                 </div>
                                 <div>

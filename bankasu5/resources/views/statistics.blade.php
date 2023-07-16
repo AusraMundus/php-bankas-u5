@@ -7,12 +7,8 @@
             <div class="card">
                 <h1 class="card-header">Bank Statistics</h1>
                 <div class="card-body">
+                    <h5 class="card-subtitle mb-3 text-muted">Display of bank data in real-time:</h5>
                     <ul class="list-group list-group-flush m-1">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
                         <li class="list-group-item">
                             <div>Total clients:</div>
                             <div class="fw-bold">{{$clients->count()}}</div>
