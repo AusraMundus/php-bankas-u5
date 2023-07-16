@@ -58,7 +58,7 @@
                                             </ol>
                                         @else
                                             <p class="fw-bold mb-3">No accounts</p>
-                                            <button class="btn btn-outline-success mb-3" onclick="window.location.href='{{route('accounts-create')}}'">Add Account</button>
+                                            {{-- <button class="btn btn-outline-success mb-3" onclick="window.location.href='{{route('accounts-create', ['client_id' => $client->id])}}'">Add Account</button> --}}
                                         @endif
                                     </div>
                                 </div>

@@ -27,9 +27,11 @@ class AccountController extends Controller
     public function create()
     {
         $clients = Client::all();
+        $iban = Account::generateLithuanianIBAN();
 
         return view('accounts.create', [
-            'clients' => $clients
+            'clients' => $clients,
+            'iban' => $iban
         ]);
     }
 
@@ -61,7 +63,7 @@ class AccountController extends Controller
 
         $account = new Account;
         $account->iban = $request->iban;
-        // $account->iban = $request->Account::generateLithuanianIBAN();
+        
         $account->client_id = $request->client_id;
         $account->balance = 0;
 

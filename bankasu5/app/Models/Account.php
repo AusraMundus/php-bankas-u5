@@ -17,7 +17,7 @@ class Account extends Model
     // IBAN
     static public function generateLithuanianIBAN() {
         $countryCode = 'LT';
-        $bankAccountNumber = sprintf('%014d', mt_rand(0, 99999999999999));
+        $bankAccountNumber = sprintf('%016d', mt_rand(0, 99999999999999));
     
         $iban = $countryCode . '00' . $bankAccountNumber;
     

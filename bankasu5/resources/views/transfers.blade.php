@@ -9,6 +9,7 @@
                 <div class="card-body">
                     <h5 class="card-subtitle mb-3 text-muted">Select accounts for money transfer:</h5>
                     <form method="" action="">
+                    {{-- <form method="post" action="{{route('tranfers-update')}}"> --}}
                         <div class="mb-3">
                             <label class="form-label">Account you want to transfer FROM</label>
                             <select name="client_id" class="form-select">

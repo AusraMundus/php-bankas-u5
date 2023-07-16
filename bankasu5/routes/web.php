@@ -18,9 +18,15 @@ use App\Http\Controllers\TransfersController as T;
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Login/logout
+Auth::routes();
 
 // Clients
 Route::prefix('clients')->name('clients-')->group(function () {
@@ -49,10 +55,6 @@ Route::prefix('accounts')->name('accounts-')->group(function () {
 // Statistics
 Route::get('/statistics', [S::class, 'index'])->name('statistics');
 
-// Transfers
+// Transfers -
 Route::get('/transfers', [T::class, 'index'])->name('transfers');
-
-// Login/logout
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// post (irasymas transfer)
