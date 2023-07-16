@@ -3,12 +3,11 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-
         <div class="col-md-12">
             <div class="card">
                 <h1 class="card-header">Clients List</h1>
                 <div class="card-body">
-{{-- Sorts and Filters --}}
+                    <!-- Sorts and Filters -->
                     <div class="m-3">
                         <form action="{{route('clients-index')}}" method="get">
                             <fieldset>
@@ -38,7 +37,7 @@
                         </form>
                     </div>
 
-{{-- Clients List --}}
+                    <!-- Clients List -->
                     <ul class="list-group list-group-flush">
                         @forelse($clients as $client)
                         <li class="list-group-item">
@@ -69,7 +68,7 @@
                 </div>
             </div>
         </div>
-{{-- Pagination --}}
+        <!-- Pagination -->
         <div class="col-md-12 mt-4">
             {{$clients->links()}}
         </div>

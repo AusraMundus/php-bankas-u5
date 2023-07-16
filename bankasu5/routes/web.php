@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ClientController as C;
 use App\Http\Controllers\AccountController as A;
-
+use App\Http\Controllers\StatisticsController as S;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +44,9 @@ Route::prefix('accounts')->name('accounts-')->group(function () {
     Route::get('/delete/{account}', [A::class, 'delete'])->name('delete');
     Route::delete('/{account}', [A::class, 'destroy'])->name('destroy');
 });
+
+// Statistics
+Route::get('/statistics', [S::class, 'index'])->name('statistics');
 
 // Login/logout
 Auth::routes();

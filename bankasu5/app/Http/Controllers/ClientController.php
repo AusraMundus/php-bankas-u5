@@ -21,11 +21,11 @@ class ClientController extends Controller
         }
         
         // Pagination
-        $perPage = (int) 3;
+        $perPage = (int) 5;
 
         if ($request->s) {
 
-            $clients = Client::where('client', 'like', '%'.$request->s.'%')->paginate(3)->withQueryString();
+            $clients = Client::where('client', 'like', '%'.$request->s.'%')->paginate(5)->withQueryString();
 
         } else {
 
