@@ -40,6 +40,15 @@
                             <a class="nav-link" href="{{ route('statistics') }}">Statistics</a>
                         </li>
 
+                        <!-- Clients Link -->
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Clients</a>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('clients-index') }}">Clients list</a>
+                                <a class="dropdown-item" href="{{ route('clients-create') }}">Add new client</a>
+                            </div>
+                        </li>
+
                         <!-- Accounts Link -->
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Accounts</a>
@@ -49,13 +58,9 @@
                             </div>
                         </li>
                         
-                        <!-- Clients Link -->
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Clients</a>
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('clients-index') }}">Clients list</a>
-                                <a class="dropdown-item" href="{{ route('clients-create') }}">Add new client</a>
-                            </div>
+                        <!-- Transfers Link -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('transfers') }}">Transfers</a>
                         </li>
                         
                         <!-- Authentication Links -->

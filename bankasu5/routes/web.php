@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ClientController as C;
 use App\Http\Controllers\AccountController as A;
 use App\Http\Controllers\StatisticsController as S;
+use App\Http\Controllers\TransfersController as T;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,9 @@ Route::prefix('accounts')->name('accounts-')->group(function () {
 
 // Statistics
 Route::get('/statistics', [S::class, 'index'])->name('statistics');
+
+// Transfers
+Route::get('/transfers', [T::class, 'index'])->name('transfers');
 
 // Login/logout
 Auth::routes();

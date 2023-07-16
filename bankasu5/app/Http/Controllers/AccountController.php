@@ -60,8 +60,8 @@ class AccountController extends Controller
         }
 
         $account = new Account;
-        // $account->iban = $request->iban;
-        $account->iban = $request->Account::generateLithuanianIBAN();
+        $account->iban = $request->iban;
+        // $account->iban = $request->Account::generateLithuanianIBAN();
         $account->client_id = $request->client_id;
         $account->balance = 0;
 
