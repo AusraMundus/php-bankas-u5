@@ -22,8 +22,8 @@
 
                         <div class="mb-3">
                             <label class="form-label">Account No</label>
-                            <input name="iban" type="text" class="form-control" value="{{old('iban')}}">
-                            {{-- <input name="iban" type="text" class="form-control" value="{{$account->iban}}" readonly> --}}
+                            {{-- <input name="iban" type="text" class="form-control" value="{{old('iban')}}"> --}}
+                            <input name="iban" type="text" class="form-control" value="{{$account->iban}}" readonly>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Balance, €</label>

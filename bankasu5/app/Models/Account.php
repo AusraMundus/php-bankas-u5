@@ -36,9 +36,9 @@ class Account extends Model
         return $iban;
     }
 
-    static public function newId(){
-        $id = hexdec(uniqid());
-        return $id;
-    }
+    // static public function newId(){
+    //     $id = hexdec(uniqid());
+    //     return $id;
+    // }
 
 }

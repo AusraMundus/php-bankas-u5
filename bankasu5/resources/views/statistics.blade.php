@@ -27,7 +27,7 @@
                         </li>
                         <li class="list-group-item">
                             <div>Average balance in accounts:</div>
-                            <div class="fw-bold">{{round($accounts->avg('balance'))}} €</div>
+                            <div class="fw-bold">{{round($accounts->avg('balance'), 2)}} €</div>
                         </li>
                         <li class="list-group-item">
                             <div>Zero balance accounts:</div>

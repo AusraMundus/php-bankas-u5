@@ -43,15 +43,14 @@ class AccountController extends Controller
             [
                 'iban' => 'required|unique:accounts|size:20',
                 'client_id' => 'required|integer',
-                'balance' => 'required|integer'
+                'balance' => ['required', 'regex:/^0$|^[1-9]\d*$|^\.\d+$|^0\.\d*$|^[1-9]\d*\.\d*$/']
             ],
             [
                 'iban.required' => 'Please enter account No!',
                 'iban.unique' => 'Account with this account number has already been added!',
                 'iban.size' => 'Account No must consist of 20 characters!',
 
-                'client_id.required' => 'Please select the client!',
-                'client_id.integer' => 'Please select the client!',
+                'client_id.required', 'client_id.integer' => 'Please select the client!',
             ]
         );
 
@@ -61,8 +60,8 @@ class AccountController extends Controller
         }
 
         $account = new Account;
-        $account->iban = $request->iban;
-        // $account->iban = Account::generateLithuanianIBANn();
+        // $account->iban = $request->iban;
+        $account->iban = $request->Account::generateLithuanianIBAN();
         $account->client_id = $request->client_id;
         $account->balance = 0;
 
@@ -103,12 +102,11 @@ class AccountController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'amount' => 'required|integer|min:0'
+                'amount' => ['required', 'min:0', 'not_in:0', 'regex:/^0$|^[1-9]\d*$|^\.\d+$|^0\.\d*$|^[1-9]\d*\.\d*$/']
             ],
             [
                 'amount.required' => 'Please enter the amount!',
-                'amount.integer' => 'The amount has to be integer!',
-                'amount.min' => 'The amount must be a positive integer!'
+                'amount.min', 'amount.not_in' => 'The amount must be a positive digit!'
             ]
         );
 

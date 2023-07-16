@@ -51,11 +51,11 @@
                                         @endif
                                         <div>List of accounts and balance:</div>
                                         @if($client->accounts()->count() > 0)
-                                            <ul class="list-group list-group-flush">
+                                            <ol class="list-group list-group-numbered list-group-flush">
                                                 @foreach($client->accounts as $account)
                                                     <li class="list-group-item fw-bold">{{$account->iban}} - {{$account->balance}} €</li>
                                                 @endforeach
-                                            </ul>
+                                            </ol>
                                         @else
                                             <p class="fw-bold mb-3">No accounts</p>
                                             <button class="btn btn-outline-success mb-3" onclick="window.location.href='{{route('accounts-create')}}'">Add Account</button>
