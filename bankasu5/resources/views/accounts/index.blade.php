@@ -13,7 +13,7 @@
                             <div class="justify-content-between" style="display: flex; flex-direction: row; align-items: center;">
                                 <div class="d-flex">
                                     <div>
-                                        <div class="fw-bold fs-3">{{$account->iban}}</div>
+                                        <div class="fw-bold fs-3 mb-2">{{$account->iban}}</div>
                                         <div>Client</div>
                                         <div class="fw-bold">{{$account->client->first_name}} {{$account->client->last_name}}</div>
                                         <div>Balance</div>
