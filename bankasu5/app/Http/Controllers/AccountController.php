@@ -9,15 +9,34 @@ use Illuminate\Support\Facades\Validator;
 
 class AccountController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $accounts = Account::all();
+    
+        // Pagination
+        $perPage = (int) 5;
+
+        if ($request->s) {
+
+            $accounts = Account::where('account', 'like', '%'.$request->s.'%')->paginate(5)->withQueryString();
+
+        } else {
+
+            $accounts = Account::select('accounts.*');
+            $accounts = $accounts->paginate($perPage)->withQueryString();
+        }
 
         return view('accounts.index', [
-            'accounts' => $accounts
+            'accounts' => $accounts,
+            'perPage' => $perPage
         ]);
     }
 

@@ -55,6 +55,6 @@ Route::prefix('accounts')->name('accounts-')->group(function () {
 // Statistics
 Route::get('/statistics', [S::class, 'index'])->name('statistics');
 
-// Transfers -
-Route::get('/transfers', [T::class, 'index'])->name('transfers');
-// post (irasymas transfer)
+// Transfers
+Route::get('/transfers', [T::class, 'transfer'])->name('transfers');
+Route::post('/transfers', [T::class, 'execute'])->name('execute');

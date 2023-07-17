@@ -9,13 +9,13 @@
                 <div class="card-body">
                     <h5 class="card-subtitle mb-3 text-muted">Select accounts for money transfer:</h5>
                     <form method="" action="">
-                    {{-- <form method="post" action="{{route('tranfers-update')}}"> --}}
+                    {{-- <form method="post" action="{{route('tranfers-execute')}}"> --}}
                         <div class="mb-3">
                             <label class="form-label">Account you want to transfer FROM</label>
                             <select name="client_id" class="form-select">
                                 <option>Click this to select the account</option>
                                     @foreach ($accounts as $account)
-                                    <option value="{{$account->id}}" @if($account->id == old('account_id')) selected @endif>
+                                    <option name="from_account_id" value="{{$account->id}}" @if($account->id == old('account_id')) selected @endif>
                                         {{$account->iban}}, {{$account->client->first_name}} {{$account->client->last_name}}, Balance: {{$account->balance}} €</option>
                                     @endforeach
                             </select>
@@ -25,7 +25,7 @@
                             <select name="client_id" class="form-select">
                                 <option>Click this to select the account</option>
                                     @foreach ($accounts as $account)
-                                        <option value="{{$account->id}}" @if($account->id == old('account_id')) selected @endif>
+                                        <option name="to_account_id" value="{{$account->id}}" @if($account->id == old('account_id')) selected @endif>
                                         {{$account->iban}}, {{$account->client->first_name}} {{$account->client->last_name}}, Balance: {{$account->balance}} €</option>
                                     @endforeach
                             </select>

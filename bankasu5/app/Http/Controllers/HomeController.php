@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Account;
+use App\Models\Client;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $clients = Client::all();
+        $accounts = Account::all();
+
+        return view('statistics', [
+            'clients' => $clients,
+            'accounts' => $accounts
+        ]);
     }
 }

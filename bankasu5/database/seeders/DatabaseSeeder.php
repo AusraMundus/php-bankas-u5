@@ -16,13 +16,13 @@ class DatabaseSeeder extends Seeder
         
         // Bankasu5 users
         DB::table('users')->insert([
-            'name' => 'Aušra',
+            'name' => 'Ausra',
             'email' => 'ausra@bankasu5.test',
             'password' => Hash::make('123456'),
         ]);
         DB::table('users')->insert([
-            'name' => 'darbuotojas1',
-            'email' => 'darbuotojas1@bankasu5.test',
+            'name' => 'user',
+            'email' => 'user@bankasu5.test',
             'password' => Hash::make('123'),
         ]);
     }
