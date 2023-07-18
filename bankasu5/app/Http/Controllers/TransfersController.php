@@ -47,8 +47,6 @@ class TransfersController extends Controller
 
             $account = Account::find($request->from_account_id);
             $account2 = Account::find($request->to_account_id);
-            // dump($account, $account2);
-            // dump($account->id);
 
             if ($account->balance >= $request->amount){
                 $account->balance -= $request->amount;

@@ -7,6 +7,39 @@
             <div class="card">
                 <h1 class="card-header">Accounts List</h1>
                 <div class="card-body">
+                    <!-- Filters -->
+                    <div class="m-3">
+                        <form action="{{route('accounts-index')}}" method="get">
+                            <fieldset>
+                                <div class="row">
+                                    <h4 class="card-title">Filter by balance status</h4>
+                                    {{-- <div class="col-3">
+                                        <select class="form-select" name="filter_by">
+                                            <option value="" @if(''==$filterBy) selected @endif>No filter</option>
+                                            <option value="balance" @if('balance'==$filterBy) selected @endif>Balance</option>  
+                                        </select>
+                                    </div> --}}
+                                    <div class="col-3">
+                                        <select class="form-select" name="filter_value">
+                                            <option value="" @if(''==$filterValue) selected @endif>Select balance status</option>
+                                            <option value="positive_balance" @if('positive_balance'==$filterValue) selected @endif>Positive balance</option>
+                                            <option value="zero_balance" @if('zero_balance'==$filterValue) selected @endif>Zero balance</option>
+                                            <option value="negative_balance" @if('negative_balance'==$filterValue) selected @endif>Negative balance</option>
+                                        </select>
+                                    </div>
+                                </div>                              
+                                <div class="row">
+                                    <div class="col-4 mt-1">
+                                        <button type="submit" class="btn btn-outline-primary">Show</button>
+                                        <a class="btn btn-outline-secondary m-1" href="{{route('accounts-index')}}">Clear</a>
+                                    </div>
+                                </div>
+
+                            </fieldset>
+                        </form>
+                    </div>
+
+                    <!-- Accounts List -->
                     <ul class="list-group list-group-flush">
                         @forelse($accounts as $account)
                         <li class="list-group-item">

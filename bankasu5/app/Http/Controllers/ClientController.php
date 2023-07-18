@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\Account;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -40,7 +41,8 @@ class ClientController extends Controller
             // Sort
             $clients = match($sortBy) {
                 'client' => $clients->orderBy('client', $orderBy),
-                'last_name' => $clients->orderBy('last_name', $orderBy),                
+                'last_name' => $clients->orderBy('last_name', $orderBy),
+                'first_name' => $clients->orderBy('first_name', $orderBy),              
                 default => $clients
             };
 
@@ -194,4 +196,29 @@ class ClientController extends Controller
             ->route('clients-index')
             ->with('success', 'Client ' . $client->first_name . ' ' . $client->last_name . ' has been deleted!');
     }
+
+    public function charge()
+    {
+        $clients = Client::all();
+        $ids = $clients->pluck('id')->toArray();
+        $sum = 0;
+        $count = 0;
+        $clientNoAcc = 0;
+
+        foreach ($ids as $id){
+            $account = Account::where('client_id', $id)->first();
+                if(!is_null($account)){
+                    $account->balance -= 5;
+                    $account->save();
+                    $sum += 5;
+                    $count ++;
+                } else {
+                    $clientNoAcc ++;
+                }
+        }
+
+        // $accounts = Account::all();
+        return redirect()->back()->with('success', 'A total fee of '. $sum .' € has been charged from ' . $count . ' clients, except for ' . $clientNoAcc . ' clients who do not have accounts.');
+    }
+
 }

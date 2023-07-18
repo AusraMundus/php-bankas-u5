@@ -25,7 +25,7 @@
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-success m-1" name="add" value=1>Add</button>
-                            <button type="submit" class="btn btn-primary m-1" name="withdraw" value=1>Withdraw</button>
+                            <button type="submit" class="btn btn-warning m-1" name="withdraw" value=1>Withdraw</button>
                             <a class="btn btn-secondary m-1" href="{{route('accounts-index')}}">Cancel</a>
                             @method('put')
                             @csrf

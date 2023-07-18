@@ -3,9 +3,9 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-6">
             <div class="card">
-                <h2 class="card-header">Transfers between accounts</h2>
+                <h2 class="card-header">Transfers Between Accounts</h2>
                 <div class="card-body">
                     <h5 class="card-subtitle mb-3 text-muted">Select accounts for money transfer:</h5>
                     {{-- <form method="" action=""> --}}

@@ -3,11 +3,11 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-12">
+        <div class="col-12">
             <div class="card">
                 <h1 class="card-header">Bank Statistics</h1>
                 <div class="card-body">
-                    <h5 class="card-subtitle mb-3 text-muted">Display of bank data in real-time:</h5>
+                    <h5 class="card-subtitle mb-3 text-muted">Bank data in real-time:</h5>
                     <ul class="list-group list-group-flush m-1">
                         <li class="list-group-item">
                             <div>Total clients:</div>

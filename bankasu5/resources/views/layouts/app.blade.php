@@ -62,6 +62,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('transfers') }}">Transfers</a>
                         </li>
+
+                        <!-- Fees Link -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('fees') }}">Fees</a>
+                        </li>
                         
                         <!-- Authentication Links -->
                         @guest

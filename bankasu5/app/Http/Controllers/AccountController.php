@@ -20,24 +20,47 @@ class AccountController extends Controller
      */
     public function index(Request $request)
     {
+    // Filter
+    // $filterBy = $request->filter_by ?? '';
+    $filterValue = $request->filter_value ?? '0';
     
-        // Pagination
-        $perPage = (int) 5;
+    // Pagination
+    $perPage = (int) 5;
+    
+    if ($request->s) {
+        
+        $accounts = Account::where('account', 'like', '%'.$request->s.'%')->paginate(5)->withQueryString();
+        
+    } else {
+        
+        $accounts = Account::select('accounts.*');
+        
+        // Filter
+        // $accounts = match($filterBy) {
+        //     'balance' => $accounts->where('balance', '=', $filterValue),
+        //     default => $accounts
+        // };
+        
+        // Additional filter options for balance status
+        if ($filterValue == 'positive_balance') {
+            $accounts = $accounts->where('balance', '>', 0);
+        } elseif ($filterValue == 'zero_balance') {
+            $accounts = $accounts->where('balance', '=', 0);
+        } elseif ($filterValue == 'negative_balance') {
+            $accounts = $accounts->where('balance', '<', 0);
+        } 
+        
+        $accounts = $accounts->paginate($perPage)->withQueryString();
+    }
+    
+    return view('accounts.index', [
+        'accounts' => $accounts,
+        // 'filterBy' => $filterBy,
+        'filterValue' => $filterValue,
+        'perPage' => $perPage,
+        's' => $request->s ?? ''
+    ]);
 
-        if ($request->s) {
-
-            $accounts = Account::where('account', 'like', '%'.$request->s.'%')->paginate(5)->withQueryString();
-
-        } else {
-
-            $accounts = Account::select('accounts.*');
-            $accounts = $accounts->paginate($perPage)->withQueryString();
-        }
-
-        return view('accounts.index', [
-            'accounts' => $accounts,
-            'perPage' => $perPage
-        ]);
     }
 
     /**
@@ -89,7 +112,7 @@ class AccountController extends Controller
         $account->save();
         return redirect()
             ->route('accounts-index')
-            ->with('success', 'New account No' . $account->iban . ' has been added!');
+            ->with('success', 'New account No ' . $account->iban . ' for client ' . $account->client->first_name . ' ' . $account->client->last_name . ' has been added!');
     }
 
     /**
@@ -144,7 +167,7 @@ class AccountController extends Controller
             $account->save();
             return redirect()
                 ->route('accounts-index')
-                ->with('success', $amount . ' € has been added to the ' . $account->client->first_name . ' ' . $account->client->last_name . ' account No' . $account->iban . '!');
+                ->with('success', $amount . ' € has been added to ' . $account->client->first_name . ' ' . $account->client->last_name . ' account No ' . $account->iban . '!');
         }
 
         // Withdraw money
@@ -153,7 +176,7 @@ class AccountController extends Controller
             if ($account->balance < $amount) {
                 return redirect()
                 ->back()
-                ->with('warning', $amount . ' € exceeds the account balance ' . $account->balance . ' € and cannot be withdrawn!');
+                ->with('warning', $amount . ' € exceeds ' . $account->client->first_name . ' ' . $account->client->last_name . ' account balance ' . $account->balance . ' € and cannot be withdrawn!');
             }
 
             $account->balance -= $amount;
@@ -161,7 +184,7 @@ class AccountController extends Controller
             $account->save();
             return redirect()
                 ->route('accounts-index')
-                ->with('success', $amount . ' € has been withdrawn from the ' . $account->client->first_name . ' ' . $account->client->last_name . ' account No' . $account->iban . '!');
+                ->with('success', $amount . ' € has been withdrawn from ' . $account->client->first_name . ' ' . $account->client->last_name . ' account No ' . $account->iban . '!');
         }
     }
 
@@ -169,7 +192,7 @@ class AccountController extends Controller
     {
 
         if ($account->balance > 0) {
-            return redirect()->back()->with('warning', 'Cannot delete account No' . $account->iban . ' because it has money in it!');
+            return redirect()->back()->with('warning', 'Cannot delete ' . $account->client->first_name . ' ' . $account->client->last_name . ' account No ' . $account->iban . ' because it has money in it!');
         }
 
         return view('accounts.delete', [
@@ -185,6 +208,6 @@ class AccountController extends Controller
         $account->delete();
         return redirect()
             ->route('accounts-index')
-            ->with('success', 'Account No' . $account->iban . ' has been deleted!');
+            ->with('success', $account->client->first_name . ' ' . $account->client->last_name . ' account No ' . $account->iban . ' has been deleted!');
     }
 }
