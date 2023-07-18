@@ -54,7 +54,7 @@
                                         @if($client->accounts()->count() > 0)
                                             <ol class="list-group list-group-numbered list-group-flush">
                                                 @foreach($client->accounts as $account)
-                                                    <li class="list-group-item fw-bold">{{$account->iban}} - {{$account->balance}} €</li>
+                                                    <li class="list-group-item fw-bold">{{$account->iban}} | {{$account->balance}} €</li>
                                                 @endforeach
                                             </ol>
                                         @else

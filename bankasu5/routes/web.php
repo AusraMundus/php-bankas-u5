@@ -43,7 +43,7 @@ Route::prefix('clients')->name('clients-')->group(function () {
     Route::get('/delete/{client}', [C::class, 'delete'])->name('delete');
     Route::delete('/{client}', [C::class, 'destroy'])->name('destroy');
 
-    // Charge (action)
+    // Fees - Charge (action)
     Route::get('/charge', [C::class, 'charge'])->name('charge');
 });
 

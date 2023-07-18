@@ -47,10 +47,8 @@
                                 <div class="d-flex">
                                     <div>
                                         <div class="fw-bold fs-3 mb-2">{{$account->iban}}</div>
-                                        <div>Client</div>
-                                        <div class="fw-bold">{{$account->client->first_name}} {{$account->client->last_name}}</div>
-                                        <div>Balance</div>
-                                        <div class="fw-bold">{{$account->balance}} €</div>
+                                        <div>Client: <span class="fw-bold">{{$account->client->first_name}} {{$account->client->last_name}}</span></div>
+                                        <div>Balance: <span class="fw-bold">{{$account->balance}} €</span></div>
                                     </div>
                                 </div>
                                 <div>
