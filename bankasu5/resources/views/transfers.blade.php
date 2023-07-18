@@ -8,24 +8,24 @@
                 <h2 class="card-header">Transfers between accounts</h2>
                 <div class="card-body">
                     <h5 class="card-subtitle mb-3 text-muted">Select accounts for money transfer:</h5>
-                    <form method="" action="">
-                    {{-- <form method="post" action="{{route('tranfers-execute')}}"> --}}
+                    {{-- <form method="" action=""> --}}
+                    <form method="post" action="{{route('execute')}}">
                         <div class="mb-3">
                             <label class="form-label">Account you want to transfer FROM</label>
-                            <select name="client_id" class="form-select">
+                            <select name="from_account_id" class="form-select">
                                 <option>Click this to select the account</option>
                                     @foreach ($accounts as $account)
-                                    <option name="from_account_id" value="{{$account->id}}" @if($account->id == old('account_id')) selected @endif>
+                                    <option value="{{$account->id}}" @if($account->id == old('account_id')) selected @endif>
                                         {{$account->iban}}, {{$account->client->first_name}} {{$account->client->last_name}}, Balance: {{$account->balance}} €</option>
                                     @endforeach
                             </select>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Account you want to transfer TO</label>
-                            <select name="client_id" class="form-select">
+                            <select name="to_account_id" class="form-select">
                                 <option>Click this to select the account</option>
                                     @foreach ($accounts as $account)
-                                        <option name="to_account_id" value="{{$account->id}}" @if($account->id == old('account_id')) selected @endif>
+                                        <option value="{{$account->id}}" @if($account->id == old('account_id')) selected @endif>
                                         {{$account->iban}}, {{$account->client->first_name}} {{$account->client->last_name}}, Balance: {{$account->balance}} €</option>
                                     @endforeach
                             </select>

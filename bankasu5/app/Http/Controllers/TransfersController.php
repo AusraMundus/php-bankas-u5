@@ -29,6 +29,8 @@ class TransfersController extends Controller
 
     public function execute(Account $account, Request $request)
     {
+        $amount = $request->amount;
+
             $validator = Validator::make(
             $request->all(),[
                 'amount' => ['required', 'min:0', 'not_in:0', 'regex:/^0$|^[1-9]\d*$|^\.\d+$|^0\.\d*$|^[1-9]\d*\.\d*$/']
@@ -43,8 +45,10 @@ class TransfersController extends Controller
                 return redirect()->back()->withErrors($validator);
             }
 
-            $account = Account::where('account_id', '=', $request->to_account_id);
-            $account2 = Account::where('account_id', '=', $request->from_account_id);
+            $account = Account::find($request->from_account_id);
+            $account2 = Account::find($request->to_account_id);
+            // dump($account, $account2);
+            // dump($account->id);
 
             if ($account->balance >= $request->amount){
                 $account->balance -= $request->amount;
@@ -52,10 +56,10 @@ class TransfersController extends Controller
 
                 $account->save();
                 $account2->save();
-                return redirect()->back()->with('success', 'Money where transfared!');
+                return redirect()->back()->with('success', $amount . ' € from ' . $account->client->first_name . ' ' . $account->client->last_name . ' account No' . $account->iban . ' has been transfared to ' . $account2->client->first_name . ' ' . $account2->client->last_name . ' account No' . $account2->iban . '!');
             }
 
-            return redirect()->back()->withErrors('Balance is not sufficient');
+            return redirect()->back()->withErrors('Balance of ' . $account->client->first_name . ' ' . $account->client->last_name . ' account No ' . $account->iban . ' is insufficient for the transfer!');
     }
 
 }

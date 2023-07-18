@@ -68,7 +68,7 @@ class AccountController extends Controller
             ],
             [
                 'iban.required' => 'Please enter account No!',
-                'iban.unique' => 'Account with this account number has already been added!',
+                'iban.unique' => 'Account with this account No has already been added!',
                 'iban.size' => 'Account No must consist of 20 characters!',
 
                 'client_id.required', 'client_id.integer' => 'Please select the client!',
@@ -89,7 +89,7 @@ class AccountController extends Controller
         $account->save();
         return redirect()
             ->route('accounts-index')
-            ->with('success', 'New account ' . $account->iban . ' has been added!');
+            ->with('success', 'New account No' . $account->iban . ' has been added!');
     }
 
     /**
@@ -144,7 +144,7 @@ class AccountController extends Controller
             $account->save();
             return redirect()
                 ->route('accounts-index')
-                ->with('success', $amount . ' € has been added to the ' . $account->client->first_name . ' ' . $account->client->last_name . ' account ' . $account->iban . '!');
+                ->with('success', $amount . ' € has been added to the ' . $account->client->first_name . ' ' . $account->client->last_name . ' account No' . $account->iban . '!');
         }
 
         // Withdraw money
@@ -161,7 +161,7 @@ class AccountController extends Controller
             $account->save();
             return redirect()
                 ->route('accounts-index')
-                ->with('success', $amount . ' € has been withdrawn from the ' . $account->client->first_name . ' ' . $account->client->last_name . ' account ' . $account->iban . '!');
+                ->with('success', $amount . ' € has been withdrawn from the ' . $account->client->first_name . ' ' . $account->client->last_name . ' account No' . $account->iban . '!');
         }
     }
 
@@ -169,7 +169,7 @@ class AccountController extends Controller
     {
 
         if ($account->balance > 0) {
-            return redirect()->back()->with('warning', 'Cannot delete account ' . $account->iban . ' because it has money in it!');
+            return redirect()->back()->with('warning', 'Cannot delete account No' . $account->iban . ' because it has money in it!');
         }
 
         return view('accounts.delete', [
@@ -185,6 +185,6 @@ class AccountController extends Controller
         $account->delete();
         return redirect()
             ->route('accounts-index')
-            ->with('success', 'Account ' . $account->iban . ' has been deleted!');
+            ->with('success', 'Account No' . $account->iban . ' has been deleted!');
     }
 }
