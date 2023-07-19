@@ -9,13 +9,13 @@
                 </div>
                 <div class="card-body">
                     <h1 class="card-title">Easy Way To Manage Bank Accounts</h1>
-                    <p class="card-text">No Paperwork, No Hassle - Just a unique app for managing bank accounts</p>
+                    <p class="card-text">No paperwork, no hassle - just a unique application for managing bank accounts</p>
                     @if (Route::has('login'))
                     <div>
                         @auth
-                            <a href="{{ url('/home') }}" class="btn btn-primary">Home</a>
+                            <a href="{{ url('/home') }}" class="btn btn-primary m-1">Home</a>
                         @else
-                            <a href="{{ route('login') }}" class="btn btn-primary">Go to Login Page</a>
+                            <a href="{{ route('login') }}" class="btn btn-primary m-1">Go to Login Page</a>
                         @endauth
                     </div>
                     @endif

@@ -54,7 +54,7 @@ class TransfersController extends Controller
 
                 $account->save();
                 $account2->save();
-                return redirect()->back()->with('success', $amount . ' € from ' . $account->client->first_name . ' ' . $account->client->last_name . ' account No' . $account->iban . ' has been transfared to ' . $account2->client->first_name . ' ' . $account2->client->last_name . ' account No' . $account2->iban . '!');
+                return redirect()->back()->with('success', $amount . ' € from ' . $account->client->first_name . ' ' . $account->client->last_name . ' account No ' . $account->iban . ' has been transfared to ' . $account2->client->first_name . ' ' . $account2->client->last_name . ' account No ' . $account2->iban . '!');
             }
 
             return redirect()->back()->withErrors('Balance of ' . $account->client->first_name . ' ' . $account->client->last_name . ' account No ' . $account->iban . ' is insufficient for the transfer!');
